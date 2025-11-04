@@ -23,7 +23,7 @@ FloodAI predicts flood risks in **real-time** using machine learning. Users adju
 ---
 
 ## 🏗️ Tech Stack
-+-------------------------------------------------------------+
+
 | Layer          | Technology                                 |
 |----------------|--------------------------------------------|
 | **Frontend**   | React.js, CSS                              |
@@ -32,7 +32,7 @@ FloodAI predicts flood risks in **real-time** using machine learning. Users adju
 | **AI/LLM**     | Ollama Llama2 (127.0.0.1:11434)            |
 | **Automation** | n8n (Optional)                             |
 | **Database**   | SQLite                                     |
-+-------------------------------------------------------------+
+
 
 ---
 
@@ -91,14 +91,14 @@ Go to **http://localhost:3000** and start predicting! 🌊
 5. **Click Chat Tab** to ask Ollama questions
 
 ### Example Locations
-+----------------------------+
+
 | City       | Expected Risk |
 |------------|---------------|
 | **Kerala** | HIGH/CRITICAL |
 | **Mumbai** | HIGH          |
 | **London** | MODERATE/HIGH |
 | **Sydney** | LOW           |
-+----------------------------+
+
 
 ### Noise Levels
 - **0-33%** (Low): Fast, clean predictions
@@ -174,14 +174,14 @@ GET http://localhost:8000/health
 
 ## 🎨 UI Components
 
-+----------------------------------------------------+
+
 | Component             | Purpose                    |
 |-----------------------|----------------------------|
 | **LocationInput**     | City search + noise slider |
 | **PredictionResult**  | Risk display + metrics     |
 | **ChatTab**           | Ollama AI responses        |
 | **ProcessingBar**     | 4-step animation           |
-+----------------------------------------------------+
+
 
 ---
 
@@ -263,7 +263,7 @@ N8N_WEBHOOK=http://localhost:5678/webhook/your-id
 
 ## 📈 Performance
 
-+--------------------------------+
+
 |        Metric       | Value    |
 |---------------------|----------|
 | Frontend Response   | < 100ms  |
@@ -271,7 +271,7 @@ N8N_WEBHOOK=http://localhost:5678/webhook/your-id
 | Ollama Response     | 5-15s    |
 | Accuracy            | 85%+     |
 | Locations Supported | 1000+    |
-+--------------------------------+
+
 
 ## 🔒 Security
 
@@ -284,7 +284,7 @@ N8N_WEBHOOK=http://localhost:5678/webhook/your-id
 
 ## 🐛 Troubleshooting
 
-+-------------------------------------------------------------------------+
+
 | Issue                   | Solution                                      |
 |-------------------------|-----------------------------------------------|
 | **Location not found**  | Check spelling, try major cities              |
@@ -292,7 +292,7 @@ N8N_WEBHOOK=http://localhost:5678/webhook/your-id
 | **Backend error**       | Check Python 3.8+, run `pip install requests` |
 | **Port already in use** | Change port in App.js & main.py               |
 | **Module not found**    | Run `pip install -r requirements.txt`         |
-+-------------------------------------------------------------------------+
+
 
 ---
 
