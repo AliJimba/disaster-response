@@ -1,0 +1,119 @@
+{
+  "name": "FloodAI Chat - Ollama Integration",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chat",
+        "options": {}
+      },
+      "id": "1e2623ab-d548-45cf-9eb4-5b11fb432e45",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        -144
+      ],
+      "webhookId": "70ed402c-6be1-4be9-95d6-e0340dae6d02"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"response\": \"{{$input.first().json.response}}\"\n}\n",
+        "options": {}
+      },
+      "id": "4eb7aa46-6d95-4660-b006-b63a752a40e0",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        224,
+        -144
+      ],
+      "notesInFlow": false,
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama2\",\n  \"prompt\": \"You are a flood expert. Question: Should I evacuate? Location: Tokyo. Risk: LOW. Answer in 1-2 sentences.\",\n  \"stream\": false\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -240,
+        -144
+      ],
+      "id": "0c69a4f5-7240-449e-9331-e7005cd10103",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const ollamaResponse = $input.first().json.response;\nreturn {\n  json: {\n    response: ollamaResponse || \"No response\"\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -32,
+        -144
+      ],
+      "id": "e53f5d32-fbba-4690-a8a2-66e9d4570a62",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "cdb7f242-91fd-420d-9dec-660fc30a6c10",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ae4eba9be36d10a462a8241287573e5c5f6b2ae5e48c9bfdbd0920e9365f2b26"
+  },
+  "id": "VD52PO2hs89PVsNs",
+  "tags": []
+}
